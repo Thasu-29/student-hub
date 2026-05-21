@@ -24,7 +24,15 @@ import "./style.css";
 
 function App() {
 
-  const [user, setUser] = useState("");
+  // USER LOGIN PERSISTENCE
+
+  const [user, setUser] = useState(() => {
+
+    return localStorage.getItem("user") || "";
+
+  });
+
+  // DARK MODE
 
   const [darkMode, setDarkMode] =
     useState(false);
@@ -194,14 +202,17 @@ function App() {
         setShowConfetti(false);
 
       }, 5000);
+
     }
 
   }, [completedTasks, totalTasks]);
 
-  // LOGIN
+  // LOGIN CHECK
 
   if (!user) {
+
     return <Login setUser={setUser} />;
+
   }
 
   return (
@@ -230,6 +241,7 @@ function App() {
 
         <Navbar
           user={user}
+          setUser={setUser}
           darkMode={darkMode}
           setDarkMode={setDarkMode}
         />
@@ -433,8 +445,3 @@ function App() {
 }
 
 export default App;
-{/* testing github connection */}
-{/* test */}
-{/* upload test */}
-{/* upload test 1 */}
-{/* upload test 2 */}
