@@ -18,9 +18,9 @@ function Login({ setUser }) {
   const users = [
 
     {
-      email: "thasneem@gmail.com",
+      email: "user@gmail.com",
       password: "123",
-      name: "Thasneem"
+      name: "User"
     },
 
     {

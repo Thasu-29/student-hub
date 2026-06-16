@@ -274,7 +274,7 @@ function App() {
                     <div>
 
                       <h1>
-                        Welcome back, {user} 👋
+                        Welcome to Student Hub 👋
                       </h1>
 
                       <p>
