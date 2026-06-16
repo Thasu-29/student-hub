@@ -35,23 +35,27 @@ function Login({ setUser }) {
 
   const handleLogin = () => {
 
+    const cleanEmail =
+      email.trim().toLowerCase();
+
+    const cleanPassword =
+      password.trim();
+
     const foundUser = users.find(
 
       (u) =>
 
-        u.email === email &&
+        u.email.toLowerCase() ===
+        cleanEmail &&
 
-        u.password === password
+        u.password ===
+        cleanPassword
 
     );
-
-    // SUCCESS LOGIN
 
     if (foundUser) {
 
       setUser(foundUser.name);
-
-      // SAVE USER IN LOCAL STORAGE
 
       localStorage.setItem(
         "user",
@@ -59,16 +63,17 @@ function Login({ setUser }) {
       );
 
       setError("");
-    }
 
-    // WRONG LOGIN
+    }
 
     else {
 
       setError(
         "Wrong email or password"
       );
+
     }
+
   };
 
   // FORGOT PASSWORD
@@ -80,18 +85,18 @@ function Login({ setUser }) {
       alert(
         "Please enter your email first"
       );
+
     }
 
     else {
 
       alert(
-
         "Password reset link sent to " +
-
         email
-
       );
+
     }
+
   };
 
   // GUEST LOGIN
@@ -104,6 +109,7 @@ function Login({ setUser }) {
       "user",
       "Guest User"
     );
+
   };
 
   return (
@@ -117,49 +123,33 @@ function Login({ setUser }) {
         </h1>
 
         <p className="login-subtitle">
-
           Stay focused and productive ✨
-
         </p>
-
-        {/* EMAIL */}
 
         <input
           type="text"
-          placeholder="Email or phone"
+          placeholder="Email"
           value={email}
           onChange={(e) =>
-
             setEmail(e.target.value)
-
           }
         />
-
-        {/* PASSWORD */}
 
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) =>
-
             setPassword(e.target.value)
-
           }
         />
-
-        {/* FORGOT PASSWORD */}
 
         <p
           className="forgot"
           onClick={forgotPassword}
         >
-
           Forgot password?
-
         </p>
-
-        {/* ERROR MESSAGE */}
 
         {error && (
 
@@ -171,18 +161,12 @@ function Login({ setUser }) {
 
         )}
 
-        {/* LOGIN BUTTON */}
-
         <button
           className="login-btn"
           onClick={handleLogin}
         >
-
           Sign in
-
         </button>
-
-        {/* DIVIDER */}
 
         <div className="divider">
 
@@ -194,21 +178,19 @@ function Login({ setUser }) {
 
         </div>
 
-        {/* GUEST BUTTON */}
-
         <button
           className="guest-btn"
           onClick={guestLogin}
         >
-
           Continue as Guest
-
         </button>
 
       </div>
 
     </div>
+
   );
+
 }
 
 export default Login;
